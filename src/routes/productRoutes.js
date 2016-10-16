@@ -19,9 +19,12 @@ productRouter.route('/')
                 var tabla = db.collection('vehiculo');
                 
                 tabla.find().toArray(function (err,result){
-                    
+                        if(err || result==null)
+                            console.log('Hubo un error o no se encontraron resultados')
+                        else{
                         var kaba = result;
                         res.render('catalogo',{ Result: kaba});
+                            }
                     });
                 })
  
@@ -31,16 +34,22 @@ productRouter.route('/')
         
    productRouter.route('/agregar')
            .get(function (req,res){
-                mongo.connect(mongoUrl, function (err,db){
+               res.render('agregar')
+                
+           })
+                   .post(function(req, res){
+                       
+                       mongo.connect(mongoUrl, function (err,db){
                 
                 var tabla = db.collection('vehiculo');
                 
                 tabla.insertOne({'descripcion': 'Ford Explorer','ruta':'s-media-cache-ak0.pinimg.com/originals/61/bb/e6/61bbe6af6dabd1b88ec2d019bb38bf9c.jpg', 'precio': 25400.00}, function (err,data){
                    res.send(data);
                     })
+                    
+                   })
                 
                 })
-           })
-        
+                       
 
 module.exports = productRouter;
