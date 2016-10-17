@@ -12,9 +12,9 @@ var productRouter = require('./src/routes/productRoutes.js')
 app.set('view engine', 'ejs');
 app.set('views', './src/views' );
 
-
-app.use(express.static('public'));
 app.use('/catalogo', productRouter);
+app.use(express.static('public'));
+productRouter.use(express.static('public'))
 
 
 app.get('/', function (req,res){
@@ -24,4 +24,4 @@ app.get('/', function (req,res){
 });
 
 
-app.listen(8080);
+app.listen(5000, "0.0.0.0");
