@@ -23,5 +23,7 @@ app.get('/', function (req,res){
     
 });
 
-
-app.listen(5000, "0.0.0.0");
+ var portToUse = process.env.PORT;
+app.listen(portToUse, "0.0.0.0", function(){
+    console.log('Listening on port '+this.address().port);
+});
