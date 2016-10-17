@@ -15,8 +15,8 @@
     "ejs": "^2.5.2",
     "jquery": "^3.1.1",
     "multer": "^1.2.0",
-      "express": "^4.13.4",
-      "node": "^v0.10.47"
+    "express": "^4.13.4",
+    "node": "~v0.10.47"
   },
   "main": "main.js",
   "scripts": {
@@ -24,5 +24,13 @@
   },
   "license": "ISC",
   "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://christopher.encarnacion@gmail.com@github.com/chris0715/carros.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chris0715/carros/issues"
+  },
+  "homepage": "https://github.com/chris0715/carros#readme",
   "description": ""
 }
