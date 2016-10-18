@@ -24,6 +24,7 @@ app.get('/', function (req,res){
 });
 
  var portToUse = process.env.PORT;
-app.listen(portToUse, "0.0.0.0", function(){
+
+app.listen(8080, "0.0.0.0", function(){
     console.log('Listening on port '+this.address().port);
 });
