@@ -18,7 +18,10 @@ productRouter.route('/')
         .get(function (req,res){
             
             mongo.connect(mongoUrl, function (err,db){
+                if(err)
+                    res.redirect("/");
                 
+                else{
                 var tabla = db.collection('vehiculo');
                 
                 tabla.find().toArray(function (err,result){
@@ -29,7 +32,7 @@ productRouter.route('/')
                         res.render('catalogo',{ Result: kaba});
                             }
                     });
-                })
+                }})
  
             })
             //res.render('catalogo')
