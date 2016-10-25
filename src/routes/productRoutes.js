@@ -12,29 +12,35 @@ var mongoUrl = 'mongodb://localhost:27017/carros';
 var elId = require('mongodb').ObjectId;
 var multer = require('multer');
 //var upload = multer({dest: 'uploads/'})
+var ProductM = require('../models/product');
 
+
+productRouter.use(function (req,res,next){
+    res.locals.currentUser = req.user;
+    
+    next();
+})
 
 productRouter.route('/')
         .get(function (req,res){
             
-            mongo.connect(mongoUrl, function (err,db){
-                if(err)
-                    res.redirect("/");
+            
                 
-                else{
-                var tabla = db.collection('vehiculo');
-                
-                tabla.find().toArray(function (err,result){
-                        if(err || result==null)
+                ProductM.find( function (err,data){
+                    if(err || data==null)
                             console.log('Hubo un error o no se encontraron resultados')
                         else{
-                        var kaba = result;
+                        var kaba = data;
+                        console.log(kaba);
                         res.render('catalogo',{ Result: kaba});
                             }
+                    
+                })
+                        
                     });
-                }})
+               
  
-            })
+                
             //res.render('catalogo')
        
         
@@ -44,12 +50,15 @@ productRouter.route('/')
                 
            })
         .post( multer({dest: 'public/uploads'}).single('imgInput'),function(req, res){
-                mongo.connect(mongoUrl, function (err,db){
+               
        
-                var tabla = db.collection('vehiculo');
-                
-                tabla.insertOne({"descripcion" : req.body.descInput, "ruta" : req.file.filename , "precio" : req.body.precioInput});
-                })
+              var product = new ProductM({
+                  descripcion: req.body.descInput,
+                  precio: req.body.precioInput,
+                  path: req.file.filename
+              })
+              
+              product.save();
                             
     });
                        

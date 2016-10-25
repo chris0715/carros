@@ -1,4 +1,4 @@
-var mongo = require('mongodb');
+var mongo = require('mongoose');
 var userSchema = mongo.Schema({
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true},
@@ -11,3 +11,6 @@ var userSchema = mongo.Schema({
 userSchema.method.name = function(){
     return this.displayName || this .username
 }
+
+
+module.exports = mongo.model("user", userSchema);

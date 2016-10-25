@@ -103,26 +103,8 @@
       <!-- .top-bar -->
       <!-- End Top Bar -->
 
-<div class="navbar navbar-default navbar-static-top" role="navigation">
-        <div class="container">
-            <ul class="nav navbar-nav navbar-right"> 
-               <% var currentUser = false; %>
-                <% if (currentUser) { %>
-                    <li>
-                        <a href="/edit">
-                        Hello, <%= currentUser.name() %>
-                            </a>
-                    </li>    
-                
-                <%} else { %>
-                 <li><a>Login</a></li>
-                <li><a href="auth/signup">Sign up </a></li>
-                <% } %>
-            </ul>
-        </div>
-    
-        
-</div>
+      
+      
         
       <!-- Start  Logo & Naviagtion  -->
       <div class="navbar navbar-default navbar-top">
@@ -142,21 +124,11 @@
             <!-- Start Navigation List -->
             <ul class="nav navbar-nav navbar-right">
               <li>
-                <a class="active" href="index.html">Home</a>
+                <a class="active" href="/">Home</a>
                 
               </li>
               <li>
-                <a href="about.html">Pages</a>
-                <ul class="dropdown">
-                  <li><a href="about.html">About</a>
-                  </li>
-                  <li><a href="services.html">Services</a>
-                  </li>
-                  <li><a href="left-sidebar.html">Left Sidebar</a>
-                  </li>
-                  <li><a href="404.html">404 Page</a>
-                  </li>
-                </ul>
+                  
               </li>
              
               <li>
@@ -164,10 +136,23 @@
             
               </li>
 
-              <li>
-                <a href="/auth/signup">Registrarse!</a>
-
-              </li>
+               <% if (currentUser) { %>
+               <li class="">
+                        <a href="/edit">
+                        Hello, <%= currentUser.username %>
+                        </a>
+                        <ul class="dropdown">
+                            <li>
+                                <a href="/catalogo/agregar">Agregar</a> 
+                                <a href="/auth/logout"> LogOut</a>
+                            </li>
+                        </ul>
+                    </li>    
+                
+                <%} else { %>
+                <li><a href="/auth/login">Login</a></li>
+                <li><a href="/auth/signup">Sign up </a></li>
+                <% } %>
 
             </ul>
             <!-- End Navigation List -->
